@@ -17,16 +17,41 @@ addCerca(nota2)
 
 console.log(arrayCerca)
 
-var happy_birthday = [("DO",""),("DO","")]
+let partituras = [
+    {
+        name: "happy_birthday",
+        notes: [
+            new Nota("DO", ""), new Nota("DO", ""), new Nota("RE", ""), new Nota("DO", ""),
+            new Nota("FA", ""), new Nota("MI", ""), new Nota("DO", ""), new Nota("DO", ""),
+            new Nota("RE", ""), new Nota("DO", ""), new Nota("SOL", ""), new Nota("FA", "")
+        ]
+    }
+];
 
-function cercador(arrayCerca,happy_birthday) {
-    for (var i = 0;arrayCerca.lenght > i;i++) {
-        for (var j = 0;happy_birthday.lenght > j;j++) {
-            if (arrayCerca[i] = happy_birthday[j]){
-                console.log(happy_birthday)
+function isSubArray(bigArray, subArray) {
+    for (let i = 0; i <= bigArray.length - subArray.length; i++) {
+        let match = true;
+        for (let j = 0; j < subArray.length; j++) {
+            if (bigArray[i + j].name !== subArray[j].name || bigArray[i + j].type !== subArray[j].type) {
+                match = false;
+                break;
             }
         }
+        if (match) return true;
     }
+    return false;
 }
+
+function cercador() {
+    for (let i = 0; i < partituras.length; i++) {
+        if (isSubArray(partituras[i].notes, arrayCerca)) {
+            console.log(`¡Coincidencia encontrada en la partitura ${partituras[i].name}!`);
+            return;
+        }
+    }
+    console.log("No se encontró ninguna coincidencia.");
+}
+
+cercador();
 
 
